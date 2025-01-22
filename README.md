@@ -1,9 +1,11 @@
-# Silence Processor
+# Audio Toolkit
 
 A Python toolkit for performing various audio processing tasks, such as:
 
 - Removing silent audio files from a folder.
 - Trimming silence from a single large audio file.
+- Slicing audio files into smaller segments.
+- Trimming audio to the first 30 seconds.
 
 ## How Loudness is Measured
 
@@ -36,8 +38,30 @@ Where:
      ```
 
 2. **Trim Silence From Large Audio**:
+
    - Remove silent segments from a single large audio file, generating a continuous output.
    - Script: `remove_silence_from_audio.py`.
+   - **Usage :**
+     ```bash
+     python scripts/remove_silent_from_audio.py input.wav output.wav --silence_thresh -40 --min_silence_len 300 --padding 200
+     ```
+
+3. **Slice Audio Into Segments**:
+
+   - Slice a large audio file into smaller segments based on specified time intervals or silence thresholds.
+   - Script: `slice_audio.py`.
+   - **Usage :**
+     ```bash
+     python scripts/slice_audio.py /path/to/audio/file --slice_duration_ms 2000 --fade_duration_ms 50
+     ```
+
+4. **Trim Audio to First 30 Seconds**:
+   - Extract the first 30 seconds of an audio file and save it as a new file.
+   - Script: `trim_audio.py`.
+   - **Usage :**
+     ```bash
+     python scripts/trim_audio.py input.wav output.wav
+     ```
 
 ## Installation
 
@@ -46,9 +70,16 @@ Where:
    ```bash
    git clone https://github.com/yourusername/silence-processor.git
    cd silence-processor
-
    ```
 
-2. Create a virtual environment
+2. Create a virtual environment:
 
-3. Install dependencies
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
